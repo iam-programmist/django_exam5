@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Delete Contact Record{% endblock %}
+{% block content %}
+    <h1>Are you sure you want to delete this contact record?</h1>
+    <p>{{ object.contact_date }} - {{ object.client }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+    </form>
+    <a href="{% url 'contacthistory_list' %}">Cancel</a>
+{% endblock %}

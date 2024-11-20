@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}User Detail{% endblock %}
+{% block content %}
+    <h1>{{ object.first_name }} {{ object.last_name }}</h1>
+    <p>Email: {{ object.email }}</p>
+    <p>Phone: {{ object.phone_number }}</p>
+    <p>Role: {{ object.get_role_display }}</p>
+    <p>Address: {{ object.address }}</p>
+    <a href="{% url 'customuser_update' object.id %}">Edit</a>
+    <a href="{% url 'customuser_delete' object.id %}">Delete</a>
+    <a href="{% url 'customuser_list' %}">Back to list</a>
+{% endblock %}

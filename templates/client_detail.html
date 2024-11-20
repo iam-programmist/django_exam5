@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Client Detail{% endblock %}
+{% block content %}
+    <h1>Client Details</h1>
+    <p><strong>Name:</strong> {{ object.first_name }} {{ object.last_name }}</p>
+    <p><strong>Phone:</strong> {{ object.phone_number }}</p>
+    <p><strong>Email:</strong> {{ object.email }}</p>
+    <p><strong>Address:</strong> {{ object.address }}</p>
+    <p><strong>Associated Seller:</strong> {{ object.seller }}</p>
+    <a href="{% url 'client_update' object.id %}">Edit</a>
+    <a href="{% url 'client_delete' object.id %}">Delete</a>
+    <a href="{% url 'client_list' %}">Back to Client List</a>
+{% endblock %}

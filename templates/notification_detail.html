@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Notification Detail{% endblock %}
+{% block content %}
+    <h1>Notification Details</h1>
+    <p><strong>User:</strong> {{ object.user }}</p>
+    <p><strong>Message:</strong> {{ object.message }}</p>
+    <p><strong>Date:</strong> {{ object.created_at }}</p>
+    <p><strong>Status:</strong> {{ object.is_read|yesno:"Read,Unread" }}</p>
+    <a href="{% url 'notification_update' object.id %}">Edit</a>
+    <a href="{% url 'notification_delete' object.id %}">Delete</a>
+    <a href="{% url 'notification_list' %}">Back to Notifications</a>
+{% endblock %}

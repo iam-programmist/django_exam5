@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Purchase Detail{% endblock %}
+{% block content %}
+    <h1>Purchase Details</h1>
+    <p><strong>Client:</strong> {{ object.client }}</p>
+    <p><strong>Product:</strong> {{ object.product }}</p>
+    <p><strong>Total:</strong> ${{ object.total }}</p>
+    <p><strong>Date:</strong> {{ object.date }}</p>
+    <a href="{% url 'purchase_update' object.id %}">Edit</a>
+    <a href="{% url 'purchase_delete' object.id %}">Delete</a>
+    <a href="{% url 'purchase_list' %}">Back to Purchase List</a>
+{% endblock %}

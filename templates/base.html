@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Debt Book{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'client_list' %}">Clients</a></li>
+                <li><a href="{% url 'product_list' %}">Products</a></li>
+                <li><a href="{% url 'debt_list' %}">Debts</a></li>
+                <li><a href="{% url 'payment_list' %}">Payments</a></li>
+                <li><a href="{% url 'checklist_list' %}">Checklists</a></li>
+                <li><a href="{% url 'contacthistory_list' %}">Contact History</a></li>
+                <li><a href="{% url 'notification_list' %}">Notifications</a></li>
+                <li><a href="{% url 'fine_list' %}">Fines</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <p>© Create by alik</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Contact History List{% endblock %}
+{% block content %}
+    <h1>Contact History</h1>
+    <a href="{% url 'contacthistory_create' %}">Add New Contact Record</a>
+    <ul>
+        {% for contact in object_list %}
+            <li>
+                <a href="{% url 'contacthistory_detail' contact.id %}">
+                    {{ contact.contact_date }} - {{ contact.client.first_name }} {{ contact.client.last_name }}
+                </a>
+                <a href="{% url 'contacthistory_update' contact.id %}">Edit</a>
+                <a href="{% url 'contacthistory_delete' contact.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

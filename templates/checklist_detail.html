@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Checklist Task Detail{% endblock %}
+{% block content %}
+    <h1>Task Details</h1>
+    <p><strong>Seller:</strong> {{ object.seller }}</p>
+    <p><strong>Task:</strong> {{ object.task }}</p>
+    <p><strong>Status:</strong> {{ object.is_completed|yesno:"Completed,Pending" }}</p>
+    <p><strong>Date Created:</strong> {{ object.created_at }}</p>
+    <a href="{% url 'checklist_update' object.id %}">Edit</a>
+    <a href="{% url 'checklist_delete' object.id %}">Delete</a>
+    <a href="{% url 'checklist_list' %}">Back to Checklist</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Debt Detail{% endblock %}
+{% block content %}
+    <h1>Debt Details</h1>
+    <p><strong>Client:</strong> {{ object.client }}</p>
+    <p><strong>Amount:</strong> ${{ object.amount }}</p>
+    <p><strong>Reason:</strong> {{ object.reason }}</p>
+    <p><strong>Due Date:</strong> {{ object.due_date }}</p>
+    <p><strong>Status:</strong> {% if object.is_paid %}Paid{% else %}Unpaid{% endif %}</p>
+    <a href="{% url 'debt_update' object.id %}">Edit</a>
+    <a href="{% url 'debt_delete' object.id %}">Delete</a>
+    <a href="{% url 'debt_list' %}">Back to Debt List</a>
+{% endblock %}
