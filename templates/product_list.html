@@ -2,6 +2,15 @@
 {% block title %}Product List{% endblock %}
 {% block content %}
     <h1>Products</h1>
+    <p>Total Revenue: {{ total_revenue }}</p>
+    <h3>All Products:</h3>
+    <ul>
+        {% for product in products %}
+            <li>
+                Name: {{ product.name }} - Price: {{ product.price }}
+            </li>
+        {% endfor %}
+    </ul>
     <a href="{% url 'product_create' %}">Add New Product</a>
     <ul>
         {% for product in object_list %}

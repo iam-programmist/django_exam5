@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy
+from django.db.models import Sum, Avg
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import CustomUser, Client, Debt, Payment, Product, Purchase, ContactHistory, Fine, Notification, Checklist
 
@@ -30,6 +31,13 @@ class UserDeleteView(DeleteView):
 class ClientListView(ListView):
     model = Client
     template_name = 'client_list.html'
+    context_object_name = 'clients'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_debt'] = Client.objects.total_debt()
+        context['clients_with_unpaid_debts'] = Client.objects.clients_with_unpaid_debts()
+        return context
 
 class ClientDetailView(DetailView):
     model = Client
@@ -55,6 +63,12 @@ class ClientDeleteView(DeleteView):
 class ProductListView(ListView):
     model = Product
     template_name = 'product_list.html'
+    context_object_name = 'products'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_revenue'] = Product.objects.total_revenue()
+        return context
 
 class ProductDetailView(DetailView):
     model = Product
@@ -155,6 +169,12 @@ class FineDeleteView(DeleteView):
 class PaymentListView(ListView):
     model = Payment
     template_name = 'payment_list.html'
+    context_object_name = 'payments'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_payments'] = Payment.objects.total_payments()
+        return context
 
 class PaymentDetailView(DetailView):
     model = Payment
@@ -205,6 +225,14 @@ class ChecklistDeleteView(DeleteView):
 class PurchaseListView(ListView):
     model = Purchase
     template_name = 'purchase_list.html'
+    context_object_name = 'purchases'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['total_purchase_amount'] = Purchase.objects.aggregate(total=Sum('total_price'))['total'] or 0
+        context['total_purchase_count'] = Purchase.objects.count()
+        context['average_purchase_price'] = Purchase.objects.aggregate(avg=Avg('total_price'))['avg'] or 0
+        return context
 
 class PurchaseDetailView(DetailView):
     model = Purchase

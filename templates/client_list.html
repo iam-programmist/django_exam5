@@ -2,6 +2,21 @@
 {% block title %}Client List{% endblock %}
 {% block content %}
     <h1>Client List</h1>
+    <p>Total Debt: {{ total_debt }}</p>
+    <h3>Clients with Unpaid Debts:</h3>
+    <ul>
+        {% for client in clients_with_unpaid_debts %}
+            <li>{{ client.first_name }} {{ client.last_name }}</li>
+        {% endfor %}
+    </ul>
+    <h3>All Clients:</h3>
+    <ul>
+        {% for client in clients %}
+            <li>
+                {{ client.first_name }} {{ client.last_name }} - Total Debt: {{ client.total_debt_for_client }}
+            </li>
+        {% endfor %}
+    </ul>
     <a href="{% url 'client_create' %}">Create New Client</a>
     <ul>
         {% for client in object_list %}

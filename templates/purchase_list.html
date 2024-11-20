@@ -2,6 +2,21 @@
 {% block title %}Purchase List{% endblock %}
 {% block content %}
     <h1>Purchases</h1>
+    <p><strong>Total Purchase Amount:</strong> {{ total_purchase_amount }}</p>
+    <p><strong>Total Number of Purchases:</strong> {{ total_purchase_count }}</p>
+    <p><strong>Average Purchase Price:</strong> {{ average_purchase_price }}</p>
+    <h3>All Purchases:</h3>
+    <ul>
+        {% for purchase in purchases %}
+            <li>
+                Client: {{ purchase.client.first_name }} {{ purchase.client.last_name }} <br>
+                Product: {{ purchase.product.name }} <br>
+                Quantity: {{ purchase.quantity }} <br>
+                Total Price: {{ purchase.total_price }} <br>
+                Purchase Date: {{ purchase.purchased_at }}
+            </li>
+        {% endfor %}
+    </ul>
     <a href="{% url 'purchase_create' %}">Add New Purchase</a>
     <ul>
         {% for purchase in object_list %}
