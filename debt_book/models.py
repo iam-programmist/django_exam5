@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
         ('seller', 'Seller'),
     ]
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='seller')
-    image = models.ImageField(upload_to='static/images', null=True, blank=True)
+    image = models.ImageField(upload_to='media/images', null=True, blank=True)
     phone_number = models.CharField(max_length=15, unique=True)
     address = models.CharField(max_length=150)
 
@@ -26,7 +26,7 @@ class Client(models.Model):
     seller = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='clients')
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='static/images', null=True, blank=True)
+    image = models.ImageField(upload_to='media/images', null=True, blank=True)
     phone_number = models.CharField(max_length=15, unique=True)
     email = models.EmailField(max_length=150, unique=True)
     address = models.CharField(max_length=150)
